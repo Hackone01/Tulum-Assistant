@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
 
-const MapWithMarkers = dynamic(() => import('@/components/MapWithMarkers'), {
+const MapWithMarkers = dynamic(() => import('../components/MapWithMarkers'), {
   ssr: false,
 });
 
