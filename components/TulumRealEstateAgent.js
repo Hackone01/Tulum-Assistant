@@ -1,4 +1,6 @@
 import { useState } from "react";
+import MapWithMarkers from './MapWithMarkers';
+
 
 export default function TulumRealEstateAgent() {
   const [userQuery, setUserQuery] = useState("");
