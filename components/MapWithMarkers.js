@@ -37,52 +37,59 @@ export default function MapWithMarkers() {
     }
   };
 
-  return (
-    <div className="flex flex-col lg:flex-row gap-4">
-      <div className="w-full lg:w-1/3 p-2 space-y-4">
-        {properties.map((property) => (
-          <div
-            key={property.id}
-            className="border rounded-xl p-3 cursor-pointer shadow-md hover:bg-gray-100"
-            onClick={() => handleClick(property)}
-          >
-            <h3 className="font-bold text-lg">{property.title}</h3>
-            <p>{property.price}</p>
-          </div>
-        ))}
-      </div>
+ return (
+  <div className="p-6 space-y-6">
+    <h1 className="text-2xl font-bold">🏡 Tulum Real Estate Marketplace Assistant</h1>
 
-      <div className="w-full lg:w-2/3 h-[500px]">
-        <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}>
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={center}
-            zoom={15}
-            onLoad={(map) => (mapRef.current = map)}
-          >
-            {properties.map((property) => (
-              <Marker
-                key={property.id}
-                position={property.position}
-                onClick={() => setSelected(property)}
-              />
-            ))}
-
-            {selected && (
-              <InfoWindow
-                position={selected.position}
-                onCloseClick={() => setSelected(null)}
-              >
-                <div>
-                  <h2 className="font-bold">{selected.title}</h2>
-                  <p>{selected.price}</p>
-                </div>
-              </InfoWindow>
-            )}
-          </GoogleMap>
-        </LoadScript>
-      </div>
+    {/* Search bar */}
+    <div className="space-y-2">
+      <input
+        className="border p-2 w-full"
+        placeholder="Search for 2BR in Aldea Zama..."
+        value={userQuery}
+        onChange={(e) => setUserQuery(e.target.value)}
+      />
+      <button onClick={handleSearch} className="bg-blue-600 text-white px-4 py-2 rounded">Search Listings</button>
     </div>
-  );
-}
+
+    {/* Listings */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {results.map((property, idx) => (
+        <div key={idx} className="border p-4 rounded shadow">
+          <h2 className="text-xl font-semibold">{property.title}</h2>
+          <p>{property.price}</p>
+          <p>Agent: {property.agent}</p>
+          <a href={property.link} className="text-blue-600 underline">Contact Agent</a>
+        </div>
+      ))}
+    </div>
+
+    {/* Buyer Info */}
+    <div className="space-y-2">
+      <h2 className="text-xl font-semibold">📝 Submit Offer / Buyer Info</h2>
+      <input className="border p-2 w-full" placeholder="Full Name" value={buyerInfo.name} onChange={(e) => setBuyerInfo({ ...buyerInfo, name: e.target.value })} />
+      <input className="border p-2 w-full" placeholder="Email" value={buyerInfo.email} onChange={(e) => setBuyerInfo({ ...buyerInfo, email: e.target.value })} />
+      <input className="border p-2 w-full" placeholder="Budget (USD)" value={buyerInfo.budget} onChange={(e) => setBuyerInfo({ ...buyerInfo, budget: e.target.value })} />
+      <textarea className="border p-2 w-full" placeholder="Preferred location, property type, trust preference, etc." value={buyerInfo.notes} onChange={(e) => setBuyerInfo({ ...buyerInfo, notes: e.target.value })} />
+      <button onClick={handleOfferGenerate} className="bg-green-600 text-white px-4 py-2 rounded">Generate Offer Letter</button>
+      {offerGenerated && (
+        <div className="mt-4">
+          <a href={offerGenerated} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Download Offer Letter PDF</a>
+        </div>
+      )}
+    </div>
+
+    {/* Map */}
+    <div className="pt-6">
+      <MapWithMarkers />
+    </div>
+
+    {/* Footer */}
+    <div className="pt-6">
+      <h2 className="text-xl font-semibold">📱 Follow Local Agents</h2>
+      <p>Check out TikToks and reels from verified brokers. Coming soon!</p>
+    </div>
+  </div>
+);
+
 
