@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic';
 
 // Dynamically load the map component with no SSR
 const MapWithMarkers = dynamic(() => import('../components/MapWithMarkers'), {
+
   ssr: false,
 });
 
