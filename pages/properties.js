@@ -1,13 +1,20 @@
 import dynamic from 'next/dynamic';
-import React from 'react';
+import Head from 'next/head';
 
-const MapWithMarkers = dynamic(() => import('../components/MapWithMarkers'), { ssr: false });
+const MapWithMarkers = dynamic(() => import('@/components/MapWithMarkers'), {
+  ssr: false,
+});
 
 export default function PropertiesPage() {
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Map of Listings</h1>
-      <MapWithMarkers />
-    </div>
+    <>
+      <Head>
+        <title>Properties | Tulum Real Estate Assistant</title>
+      </Head>
+      <main className="min-h-screen bg-white p-6">
+        <h1 className="text-2xl font-bold mb-4">Explore Properties in Tulum</h1>
+        <MapWithMarkers />
+      </main>
+    </>
   );
 }
