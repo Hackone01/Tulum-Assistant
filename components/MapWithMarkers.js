@@ -10,6 +10,20 @@ const center = {
   lat: 20.2115,
   lng: -87.4654,
 };
+const results = [
+  {
+    title: "2BR Condo in Aldea Zama",
+    price: "$249,000",
+    agent: "Sofia Real Estate",
+    link: "#"
+  },
+  {
+    title: "Eco Villa in La Veleta",
+    price: "$399,000",
+    agent: "Tulum Homes",
+    link: "#"
+  }
+];
 
 const properties = [
   {
