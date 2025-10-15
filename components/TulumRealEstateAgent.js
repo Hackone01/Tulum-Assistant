@@ -1,7 +1,6 @@
 import { useState } from "react";
 import MapWithMarkers from './MapWithMarkers';
 
-
 export default function TulumRealEstateAgent() {
   const [userQuery, setUserQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -65,6 +64,7 @@ export default function TulumRealEstateAgent() {
     <div className="p-6 space-y-6">
       <h1 className="text-2xl font-bold">🏡 Tulum Real Estate Marketplace Assistant</h1>
 
+      {/* Search bar */}
       <div className="space-y-2">
         <input
           className="border p-2 w-full"
@@ -75,31 +75,45 @@ export default function TulumRealEstateAgent() {
         <button onClick={handleSearch} className="bg-blue-600 text-white px-4 py-2 rounded">Search Listings</button>
       </div>
 
+      {/* Property listings */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-  {results.map((property, idx) => (
-    <div key={idx} className="border p-4 rounded shadow">
-      <h2 className="text-xl font-semibold">{property.title}</h2>
-      <p>{property.price}</p>
-      <p>Agent: {property.agent}</p>
-      <a href={property.link} className="text-blue-600 underline">Contact Agent</a>
-    </div>
-  ))}
-</div> {/* End of property listings */}
-
-<MapWithMarkers />  // ← Add this line here
-
-<div className="space-y-2">  // Start of the buyer info form
-
-
-        
+        {results.map((property, idx) => (
+          <div key={idx} className="border p-4 rounded shadow">
+            <h2 className="text-xl font-semibold">{property.title}</h2>
+            <p>{property.price}</p>
+            <p>Agent: {property.agent}</p>
+            <a href={property.link} className="text-blue-600 underline">Contact Agent</a>
+          </div>
+        ))}
       </div>
 
+      {/* Submit Offer / Buyer Info */}
       <div className="space-y-2">
         <h2 className="text-xl font-semibold">📝 Submit Offer / Buyer Info</h2>
-        <input className="border p-2 w-full" placeholder="Full Name" value={buyerInfo.name} onChange={(e) => setBuyerInfo({ ...buyerInfo, name: e.target.value })} />
-        <input className="border p-2 w-full" placeholder="Email" value={buyerInfo.email} onChange={(e) => setBuyerInfo({ ...buyerInfo, email: e.target.value })} />
-        <input className="border p-2 w-full" placeholder="Budget (USD)" value={buyerInfo.budget} onChange={(e) => setBuyerInfo({ ...buyerInfo, budget: e.target.value })} />
-        <textarea className="border p-2 w-full" placeholder="Preferred location, property type, trust preference, etc." value={buyerInfo.notes} onChange={(e) => setBuyerInfo({ ...buyerInfo, notes: e.target.value })} />
+        <input
+          className="border p-2 w-full"
+          placeholder="Full Name"
+          value={buyerInfo.name}
+          onChange={(e) => setBuyerInfo({ ...buyerInfo, name: e.target.value })}
+        />
+        <input
+          className="border p-2 w-full"
+          placeholder="Email"
+          value={buyerInfo.email}
+          onChange={(e) => setBuyerInfo({ ...buyerInfo, email: e.target.value })}
+        />
+        <input
+          className="border p-2 w-full"
+          placeholder="Budget (USD)"
+          value={buyerInfo.budget}
+          onChange={(e) => setBuyerInfo({ ...buyerInfo, budget: e.target.value })}
+        />
+        <textarea
+          className="border p-2 w-full"
+          placeholder="Preferred location, property type, trust preference, etc."
+          value={buyerInfo.notes}
+          onChange={(e) => setBuyerInfo({ ...buyerInfo, notes: e.target.value })}
+        />
         <button onClick={handleOfferGenerate} className="bg-green-600 text-white px-4 py-2 rounded">Generate Offer Letter</button>
         {offerGenerated && (
           <div className="mt-4">
@@ -108,6 +122,10 @@ export default function TulumRealEstateAgent() {
         )}
       </div>
 
+      {/* Map Component */}
+      <MapWithMarkers />  {/* Map is placed after the buyer info section */}
+      
+      {/* Follow Local Agents */}
       <div className="pt-6">
         <h2 className="text-xl font-semibold">📱 Follow Local Agents</h2>
         <p>Check out TikToks and reels from verified brokers. Coming soon!</p>
