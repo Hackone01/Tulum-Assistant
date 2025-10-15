@@ -40,12 +40,8 @@ export default function MapWithMarkers() {
  return (
   <div className="p-6 space-y-6">
     <h1 className="text-2xl font-bold">🏡 Tulum Real Estate Marketplace Assistant</h1>
-
-    {/* Search bar */}
-    <div className="space-y-2">
-      
-    </div>
-
+    
+    
     {/* Listings */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {results.map((property, idx) => (
