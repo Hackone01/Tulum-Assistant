@@ -75,7 +75,7 @@ export default function TulumRealEstateAgent() {
         <button onClick={handleSearch} className="bg-blue-600 text-white px-4 py-2 rounded">Search Listings</button>
       </div>
 
-      <<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
   {results.map((property, idx) => (
     <div key={idx} className="border p-4 rounded shadow">
       <h2 className="text-xl font-semibold">{property.title}</h2>
