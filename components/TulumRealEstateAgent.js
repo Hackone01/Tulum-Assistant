@@ -8,22 +8,20 @@ export default function TulumRealEstateAgent() {
   const [offerGenerated, setOfferGenerated] = useState(null);
 
   const handleSearch = async () => {
-    const mockResults = [
-      {
-        title: "2BR Condo in Aldea Zama",
-        price: "$249,000",
-        agent: "Sofia Real Estate",
-        link: "#"
-      },
-      {
-        title: "Eco Villa in La Veleta",
-        price: "$399,000",
-        agent: "Tulum Homes",
-        link: "#"
-      }
-    ];
+  // Avoid triggering search if no query entered
+  if (!userQuery) return;
+
+  // Avoid running if the search results are the same
+  const mockResults = [
+    { title: "2BR Condo in Aldea Zama", price: "$249,000", agent: "Sofia Real Estate", link: "#" },
+    { title: "Eco Villa in La Veleta", price: "$399,000", agent: "Tulum Homes", link: "#" }
+  ];
+
+  // Only set the results if they are different
+  if (JSON.stringify(results) !== JSON.stringify(mockResults)) {
     setResults(mockResults);
-  };
+  }
+};
 
   const handleOfferGenerate = async () => {
     const selectedProperty = results[0] || {
