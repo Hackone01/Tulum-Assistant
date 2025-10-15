@@ -86,11 +86,12 @@ export default function TulumRealEstateAgent() {
   ))}
 </div> {/* End of property listings */}
 
-      <MapWithMarkers />  // ← Add this line here
+<MapWithMarkers />  // ← Add this line here
 
-      <div className="space-y-2">  // Start of the buyer info form
+<div className="space-y-2">  // Start of the buyer info form
 
-        ))}
+
+        
       </div>
 
       <div className="space-y-2">
