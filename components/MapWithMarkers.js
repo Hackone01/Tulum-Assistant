@@ -43,13 +43,7 @@ export default function MapWithMarkers() {
 
     {/* Search bar */}
     <div className="space-y-2">
-      <input
-        className="border p-2 w-full"
-        placeholder="Search for 2BR in Aldea Zama..."
-        value={userQuery}
-        onChange={(e) => setUserQuery(e.target.value)}
-      />
-      <button onClick={handleSearch} className="bg-blue-600 text-white px-4 py-2 rounded">Search Listings</button>
+      
     </div>
 
     {/* Listings */}
